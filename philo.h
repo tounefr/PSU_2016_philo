@@ -2,6 +2,8 @@
 #ifndef UNTITLED_PHILO_H
 #define UNTITLED_PHILO_H
 
+#include "extern.h"
+
 enum PHILO_STATES
 {
     UNKNOWN = 0,
@@ -60,5 +62,35 @@ typedef struct s_philosophers
     t_philosopher *philosophers;
     pthread_mutex_t *forks;
 } t_philosophers;
+
+char parse_args(int argc,
+                char **argv,
+                int *philo_numbers,
+                int *philo_max_eat);
+char print_usage();
+char here_we_go(t_philosophers *philosophers);
+
+
+char s_philosopher_init(struct s_philosopher *p,
+                        int index,
+                        int max_eat,
+                        int nbr_philo);
+char s_philosophers_init(struct s_philosophers *philosophers);
+t_arg_philosopher_thread *s_arg_philosopher_thread_init(
+        int index,
+        struct s_philosophers *philosophers);
+char s_philosophers_free(struct s_philosophers *philosophers);
+
+
+void forks_action(char action,
+                  char chopstick,
+                  struct s_arg_philosopher_thread *pharg,
+                  struct s_philosopher *ph);
+void *s_philosopher_thread(void *arg);
+char start_philosophers_threads(struct s_philosophers *philosophers);
+
+void swap_forks(int *a, int *b);
+
+
 
 #endif //UNTITLED_PHILO_H

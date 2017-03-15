@@ -3,7 +3,10 @@ CC = gcc
 
 RM = rm -f
 
-SRCS = main.c
+SRCS = main.c \
+        philo_init.c \
+        philo_algo.c \
+        util.c
 
 OBJS = $(SRCS:.c=.o)
 
