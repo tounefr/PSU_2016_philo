@@ -59,36 +59,34 @@ void forks_action(char action,
 
 void *s_philosopher_thread(void *arg) {
     int i;
-    struct s_arg_philosopher_thread *philosopher_arg;
+    struct s_arg_philosopher_thread *ph_arg;
     struct s_philosopher *philosopher;
 
-    philosopher_arg = (struct s_arg_philosopher*) arg;
-    philosopher = &philosopher_arg->philosophers->philosophers[philosopher_arg->index];
+    ph_arg = (struct s_arg_philosopher_thread*) arg;
+    philosopher = &ph_arg->philosophers->philosophers[ph_arg->index];
     i = 0;
     while (i < philosopher->max_eat) {
         if (philosopher->state == THINK) {
-            forks_action(LOCK, BOTH_FORK, philosopher_arg, philosopher);
+            forks_action(LOCK, BOTH_FORK, ph_arg, philosopher);
             philosopher->state = EAT;
             lphilo_eat();
-            forks_action(RELEASE, BOTH_FORK, philosopher_arg, philosopher);
+            forks_action(RELEASE, BOTH_FORK, ph_arg, philosopher);
             i++;
         }
         else if (philosopher->state == UNKNOWN || philosopher->state == SLEEP) {
-            forks_action(LOCK, LEFT_FORK, philosopher_arg, philosopher);
+            forks_action(LOCK, LEFT_FORK, ph_arg, philosopher);
             philosopher->state = THINK;
             lphilo_think();
-            forks_action(RELEASE, LEFT_FORK, philosopher_arg, philosopher);
+            forks_action(RELEASE, LEFT_FORK, ph_arg, philosopher);
         }
-        else if (philosopher->state == EAT) {
-            philosopher->state = SLEEP;
+        else if (philosopher->state == EAT && (philosopher->state = SLEEP))
             lphilo_sleep();
-        }
     }
 }
 
-void swap_forks(char *a, char *b)
+void swap_forks(int *a, int *b)
 {
-    char c;
+    int c;
 
     c = *a;
     *a = *b;
@@ -104,9 +102,6 @@ char s_philosopher_init(struct s_philosopher *philosopher, int index, int max_ea
     if (philosopher->forks_index[LEFT_FORK] > philosopher->forks_index[RIGHT_FORK])
         swap_forks(&philosopher->forks_index[LEFT_FORK], &philosopher->forks_index[RIGHT_FORK]);
     return 1;
-}
-
-void s_philosopher_free(struct s_philosopher *philosopher) {
 }
 
 char s_philosophers_init(struct s_philosophers *philosophers)
@@ -132,7 +127,9 @@ char s_philosophers_init(struct s_philosophers *philosophers)
     return 1;
 }
 
-t_arg_philosopher_thread *s_arg_philosopher_thread_init(int index, struct s_philosophers *philosophers) {
+t_arg_philosopher_thread *s_arg_philosopher_thread_init(
+        int index,
+        struct s_philosophers *philosophers) {
     t_arg_philosopher_thread *arg;
 
     if (NULL == (arg = malloc(sizeof(t_arg_philosopher_thread))))

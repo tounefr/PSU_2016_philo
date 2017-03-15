@@ -23,6 +23,7 @@ enum THREAD_ACTION
     RELEASE = 1
 };
 
+typedef struct s_philosophers t_philosophers;
 typedef struct s_philosopher
 {
     int max_eat;
