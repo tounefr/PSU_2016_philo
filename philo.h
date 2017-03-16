@@ -29,6 +29,7 @@ typedef struct s_philosophers t_philosophers;
 typedef struct s_philosopher
 {
     int max_eat;
+    int cur_eat;
     int index;
     char state;
     pthread_t thread;
@@ -57,7 +58,6 @@ typedef struct s_arg_philosopher_thread
 typedef struct s_philosophers
 {
     int nbr_philo;
-    int cur_eat;
     int max_eat;
     t_philosopher *philosophers;
     pthread_mutex_t *forks;

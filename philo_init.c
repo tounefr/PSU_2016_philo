@@ -7,9 +7,10 @@ char s_philosopher_init(struct s_philosopher *p,
                         int max_eat,
                         int nbr_philo)
 {
-    p->max_eat = max_eat / nbr_philo;
+    p->max_eat = max_eat;
     p->index = index;
     p->state = UNKNOWN;
+    p->cur_eat = 0;
     p->forks_index[LEFT_FORK] = index;
     p->forks_index[RIGHT_FORK] = (index + 1) % nbr_philo;
     if (p->forks_index[LEFT_FORK] > p->forks_index[RIGHT_FORK])
@@ -31,7 +32,6 @@ char s_philosophers_init(struct s_philosophers *philosophers)
     philosophers->forks = malloc(m_size);
     if (philosophers->forks == NULL)
         return 0;
-    philosophers->cur_eat = 0;
     i = -1;
     while (++i < philosophers->nbr_philo) {
         if (!s_philosopher_init(&philosophers->philosophers[i], i,
