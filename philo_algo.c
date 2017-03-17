@@ -99,7 +99,7 @@ void *s_philosopher_thread(void *arg) {
         }
         else if (philosopher->state == EAT && (philosopher->state = SLEEP))
             lphilo_sleep();
-        sleep(0.2);
+       	usleep(200);
     }
 }
 
