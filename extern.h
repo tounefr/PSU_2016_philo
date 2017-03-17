@@ -1,3 +1,13 @@
+/*
+** extern.h for  in /mnt/PSU_2016_philo
+** 
+** Made by Thomas HENON
+** Login   <henon_t@epitech.net>
+** 
+** Started on  Fri Mar 17 10:29:58 2017 Thomas HENON
+** Last update Fri Mar 17 10:29:58 2017 Thomas HENON
+*/
+
 #ifndef __LIBRICEFEREE_EXTERN__
 # define __LIBRICEFEREE_EXTERN__
 

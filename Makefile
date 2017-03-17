@@ -1,3 +1,12 @@
+##
+## Makefile for  in /mnt/PSU_2016_philo
+## 
+## Made by Thomas HENON
+## Login   <henon_t@epitech.net>
+## 
+## Started on  Fri Mar 17 10:27:32 2017 Thomas HENON
+## Last update Fri Mar 17 10:27:32 2017 Thomas HENON
+##
 
 CC = gcc
 

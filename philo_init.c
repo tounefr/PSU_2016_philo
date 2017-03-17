@@ -1,3 +1,12 @@
+/*
+** philo_init.c for  in /mnt/PSU_2016_philo
+** 
+** Made by Thomas HENON
+** Login   <henon_t@epitech.net>
+** 
+** Started on  Fri Mar 17 10:26:40 2017 Thomas HENON
+** Last update Fri Mar 17 10:26:41 2017 Thomas HENON
+*/
 
 #include <stdlib.h>
 #include "philo.h"

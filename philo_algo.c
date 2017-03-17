@@ -1,7 +1,16 @@
+/*
+** philo_algo.c for  in /mnt/PSU_2016_philo
+** 
+** Made by Thomas HENON
+** Login   <henon_t@epitech.net>
+** 
+** Started on  Fri Mar 17 10:26:33 2017 Thomas HENON
+** Last update Fri Mar 17 10:26:34 2017 Thomas HENON
+*/
 
 #include "philo.h"
 
-void forks_action(char action,
+char forks_action(char action,
                   char chopstick,
                   struct s_arg_philosopher_thread *pharg,
                   struct s_philosopher *ph) {
@@ -28,6 +37,7 @@ void forks_action(char action,
             lphilo_release_chopstick(mutex[1]);
         }
     }
+    return 1;
 }
 
 char philo_has_max_eat(struct s_philosophers *philos) {

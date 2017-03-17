@@ -1,3 +1,12 @@
+/*
+** philo.h for  in /mnt/PSU_2016_philo
+** 
+** Made by Thomas HENON
+** Login   <henon_t@epitech.net>
+** 
+** Started on  Fri Mar 17 10:26:26 2017 Thomas HENON
+** Last update Fri Mar 17 10:26:27 2017 Thomas HENON
+*/
 
 #ifndef UNTITLED_PHILO_H
 #define UNTITLED_PHILO_H
@@ -35,19 +44,7 @@ typedef struct s_philosopher
     pthread_t thread;
     void *s_arg_philosopher_thread;
     int forks_index[2];
-
-    void (*init)(struct s_philosophers*, int index, int max_eat);
-    void (*change_state)(struct s_philosophers*, int state);
-    void (*running_thread)(struct s_philosophers*);
-    void (*describe)(struct s_philosophers*);
 } t_philosopher;
-
-typedef struct s_forks
-{
-    void (*init)(struct s_forks*, int i_left, int i_right);
-    void (*pick)(struct s_forks*);
-    void (*release)(struct s_forks*);
-} t_forks;
 
 typedef struct s_arg_philosopher_thread
 {
@@ -82,7 +79,7 @@ t_arg_philosopher_thread *s_arg_philosopher_thread_init(
 char s_philosophers_free(struct s_philosophers *philosophers);
 
 
-void forks_action(char action,
+char forks_action(char action,
                   char chopstick,
                   struct s_arg_philosopher_thread *pharg,
                   struct s_philosopher *ph);
