@@ -40,7 +40,7 @@ typedef struct s_philosopher
     int max_eat;
     int cur_eat;
     int index;
-    char state;
+    enum PHILO_STATES state;
     pthread_t thread;
     void *s_arg_philosopher_thread;
     int forks_index[2];
@@ -87,7 +87,7 @@ void *s_philosopher_thread(void *arg);
 char start_philosophers_threads(struct s_philosophers *philosophers);
 
 void swap_forks(int *a, int *b);
-
+char is_integer(char *s);
 
 
 #endif //UNTITLED_PHILO_H

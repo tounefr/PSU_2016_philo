@@ -24,6 +24,8 @@ char parse_args(int argc,
     if (argc != 5)
         return 0;
     while (i < argc - 1) {
+        if (!is_integer(argv[i + 1]))
+            return 0;
         if (!strcmp(argv[i], "-p"))
             *philo_numbers = atoi(argv[i + 1]);
         if (!strcmp(argv[i], "-e"))
