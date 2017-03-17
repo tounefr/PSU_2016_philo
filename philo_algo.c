@@ -8,6 +8,7 @@
 ** Last update Fri Mar 17 10:26:34 2017 Thomas HENON
 */
 
+#include <unistd.h>
 #include "philo.h"
 
 char forks_action(char action,
@@ -98,6 +99,7 @@ void *s_philosopher_thread(void *arg) {
         }
         else if (philosopher->state == EAT && (philosopher->state = SLEEP))
             lphilo_sleep();
+        sleep(0.2);
     }
 }
 
