@@ -11,12 +11,14 @@
 #include <unistd.h>
 #include "philo.h"
 
-char forks_action(char action,
-                  char chopstick,
-                  struct s_arg_philosopher_thread *pharg,
-                  struct s_philosopher *ph)
+char                forks_action(
+                        char action,
+                        char chopstick,
+                        struct s_arg_philosopher_thread *pharg,
+                        struct s_philosopher *ph)
 {
     pthread_mutex_t *mutex[2];
+
     mutex[0] = &pharg->philosophers->forks[ph->forks_index[LEFT_FORK]];
     mutex[1] = &pharg->philosophers->forks[ph->forks_index[RIGHT_FORK]];
     if (action == LOCK) {
@@ -42,22 +44,7 @@ char forks_action(char action,
     return 1;
 }
 
-char philo_has_max_eat(struct s_philosophers *philos) {
-    int i;
-
-    i = -1;
-    //pthread_mutex_lock(philos->eat_lock);
-    while (++i < philos->nbr_philo) {
-       if (philos->philosophers[i].cur_eat >= philos->max_eat) {
-           //pthread_mutex_unlock(philos->eat_lock);
-           return 1;
-       }
-    }
-    //pthread_mutex_unlock(philos->eat_lock);
-    return 0;
-}
-
-char philo_eat(struct s_arg_philosopher_thread *ph_arg,
+char    philo_eat(struct s_arg_philosopher_thread *ph_arg,
                struct s_philosopher *philosopher)
 {
     int i;
@@ -65,8 +52,10 @@ char philo_eat(struct s_arg_philosopher_thread *ph_arg,
     i = -1;
     while (++i < ph_arg->philosophers->nbr_philo) {
         if (ph_arg->philosophers->philosophers[i].cur_eat >=
-                ph_arg->philosophers->max_eat)
+                ph_arg->philosophers->max_eat) {
+            forks_action(RELEASE, BOTH_FORK, ph_arg, philosopher);
             return 0;
+        }
     }
     philosopher->state = EAT;
     lphilo_eat();
@@ -74,11 +63,11 @@ char philo_eat(struct s_arg_philosopher_thread *ph_arg,
     return 1;
 }
 
-void *s_philosopher_thread(void *arg)
+void                                    *s_philosopher_thread(void *arg)
 {
-    int i;
-    struct s_arg_philosopher_thread *ph_arg;
-    struct s_philosopher *philosopher;
+    int                                 i;
+    struct s_arg_philosopher_thread     *ph_arg;
+    struct s_philosopher                *philosopher;
 
     ph_arg = (struct s_arg_philosopher_thread*) arg;
     philosopher = &ph_arg->philosophers->philosophers[ph_arg->index];
@@ -86,12 +75,10 @@ void *s_philosopher_thread(void *arg)
     while (1) {
         if (philosopher->state == THINK) {
             forks_action(LOCK, BOTH_FORK, ph_arg, philosopher);
-            if (!philo_eat(ph_arg, philosopher)) {
-                forks_action(RELEASE, BOTH_FORK, ph_arg, philosopher);
-                break;
-            }
+            if (!philo_eat(ph_arg, philosopher))
+                return 0;
             forks_action(RELEASE, BOTH_FORK, ph_arg, philosopher);
-            usleep(2500);
+            usleep(1400);
         }
         else if (philosopher->state == UNKNOWN ||
                  philosopher->state == SLEEP) {
@@ -105,10 +92,11 @@ void *s_philosopher_thread(void *arg)
     }
 }
 
-char start_philosophers_threads(struct s_philosophers *philosophers)
+char                            start_philosophers_threads(
+        struct s_philosophers *philosophers)
 {
-    int i;
-    t_arg_philosopher_thread *arg_p;
+    int                         i;
+    t_arg_philosopher_thread    *arg_p;
 
     i = -1;
     while (++i < philosophers->nbr_philo) {

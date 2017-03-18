@@ -8,8 +8,8 @@
 ** Last update Fri Mar 17 10:26:27 2017 Thomas HENON
 */
 
-#ifndef UNTITLED_PHILO_H
-#define UNTITLED_PHILO_H
+#ifndef PHILO_H
+#define PHILO_H
 
 #include "extern.h"
 
@@ -67,8 +67,6 @@ char parse_args(int argc,
                 int *philo_max_eat);
 char print_usage();
 char here_we_go(t_philosophers *philosophers);
-
-
 char s_philosopher_init(struct s_philosopher *p,
                         int index,
                         int max_eat,
@@ -78,17 +76,13 @@ t_arg_philosopher_thread *s_arg_philosopher_thread_init(
         int index,
         struct s_philosophers *philosophers);
 char s_philosophers_free(struct s_philosophers *philosophers);
-
-
 char forks_action(char action,
                   char chopstick,
                   struct s_arg_philosopher_thread *pharg,
                   struct s_philosopher *ph);
 void *s_philosopher_thread(void *arg);
 char start_philosophers_threads(struct s_philosophers *philosophers);
-
 void swap_forks(int *a, int *b);
 char is_integer(char *s);
 
-
-#endif //UNTITLED_PHILO_H
+#endif //PHILO_H

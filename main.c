@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include "philo.h"
 
-char parse_args(int argc,
+char    parse_args(int argc,
                 char **argv,
                 int *philo_numbers,
                 int *philo_max_eat)
@@ -42,9 +42,9 @@ char print_usage() {
     return 1;
 }
 
-char here_we_go(t_philosophers *philosophers) {
-    int i;
-    void *thread_status;
+char        here_we_go(t_philosophers *philosophers) {
+    int     i;
+    void    *thread_status;
 
     if (!s_philosophers_init(philosophers))
         return 0;
@@ -59,9 +59,9 @@ char here_we_go(t_philosophers *philosophers) {
     return 1;
 }
 
-int main(int argc, char **argv) {
-    t_philosophers philosophers;
-    int returnv;
+int                 main(int argc, char **argv) {
+    t_philosophers  philosophers;
+    int             returnv;
 
     if (!parse_args(argc, argv, &philosophers.nbr_philo,
                     &philosophers.max_eat))

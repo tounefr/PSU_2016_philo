@@ -10,7 +10,7 @@
 
 #include <string.h>
 
-void swap_forks(int *a, int *b)
+void    swap_forks(int *a, int *b)
 {
     int c;
 
@@ -19,7 +19,7 @@ void swap_forks(int *a, int *b)
     *b = c;
 }
 
-char is_integer(char *s)
+char    is_integer(char *s)
 {
     int i;
     int len;

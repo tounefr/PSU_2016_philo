@@ -28,7 +28,7 @@ char s_philosopher_init(struct s_philosopher *p,
     return 1;
 }
 
-char s_philosophers_init(struct s_philosophers *philosophers)
+char    s_philosophers_init(struct s_philosophers *philosophers)
 {
     int i;
     int m_size;
@@ -53,11 +53,11 @@ char s_philosophers_init(struct s_philosophers *philosophers)
     return 1;
 }
 
-t_arg_philosopher_thread *s_arg_philosopher_thread_init(
+t_arg_philosopher_thread        *s_arg_philosopher_thread_init(
         int index,
         struct s_philosophers *philosophers)
 {
-    t_arg_philosopher_thread *arg;
+    t_arg_philosopher_thread    *arg;
 
     if (NULL == (arg = malloc(sizeof(t_arg_philosopher_thread))))
         return NULL;
@@ -66,7 +66,7 @@ t_arg_philosopher_thread *s_arg_philosopher_thread_init(
     return arg;
 }
 
-char s_philosophers_free(struct s_philosophers *philosophers)
+char    s_philosophers_free(struct s_philosophers *philosophers)
 {
     int i;
 
