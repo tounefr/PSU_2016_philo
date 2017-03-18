@@ -55,7 +55,8 @@ char s_philosophers_init(struct s_philosophers *philosophers)
 
 t_arg_philosopher_thread *s_arg_philosopher_thread_init(
         int index,
-        struct s_philosophers *philosophers) {
+        struct s_philosophers *philosophers)
+{
     t_arg_philosopher_thread *arg;
 
     if (NULL == (arg = malloc(sizeof(t_arg_philosopher_thread))))

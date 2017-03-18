@@ -14,7 +14,8 @@
 char forks_action(char action,
                   char chopstick,
                   struct s_arg_philosopher_thread *pharg,
-                  struct s_philosopher *ph) {
+                  struct s_philosopher *ph)
+{
     pthread_mutex_t *mutex[2];
     mutex[0] = &pharg->philosophers->forks[ph->forks_index[LEFT_FORK]];
     mutex[1] = &pharg->philosophers->forks[ph->forks_index[RIGHT_FORK]];
@@ -73,7 +74,8 @@ char philo_eat(struct s_arg_philosopher_thread *ph_arg,
     return 1;
 }
 
-void *s_philosopher_thread(void *arg) {
+void *s_philosopher_thread(void *arg)
+{
     int i;
     struct s_arg_philosopher_thread *ph_arg;
     struct s_philosopher *philosopher;
@@ -89,6 +91,7 @@ void *s_philosopher_thread(void *arg) {
                 break;
             }
             forks_action(RELEASE, BOTH_FORK, ph_arg, philosopher);
+            usleep(2500);
         }
         else if (philosopher->state == UNKNOWN ||
                  philosopher->state == SLEEP) {
@@ -99,7 +102,6 @@ void *s_philosopher_thread(void *arg) {
         }
         else if (philosopher->state == EAT && (philosopher->state = SLEEP))
             lphilo_sleep();
-       	usleep(200);
     }
 }
 

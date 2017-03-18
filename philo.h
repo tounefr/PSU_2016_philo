@@ -18,7 +18,8 @@ enum PHILO_STATES
     UNKNOWN = 0,
     THINK = 1,
     EAT = 2,
-    SLEEP = 3
+    SLEEP = 3,
+    FINISHED = 4
 };
 
 enum PHILO_FORKS
