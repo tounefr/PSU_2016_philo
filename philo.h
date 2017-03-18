@@ -8,8 +8,8 @@
 ** Last update Fri Mar 17 10:26:27 2017 Thomas HENON
 */
 
-#ifndef PHILO_H
-#define PHILO_H
+#ifndef __PHILO_H__
+#define __PHILO_H__
 
 #include "extern.h"
 
@@ -85,4 +85,4 @@ char start_philosophers_threads(struct s_philosophers *philosophers);
 void swap_forks(int *a, int *b);
 char is_integer(char *s);
 
-#endif //PHILO_H
+#endif //__PHILO_H__
